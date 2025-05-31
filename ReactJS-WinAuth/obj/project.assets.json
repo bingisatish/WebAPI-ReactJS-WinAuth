@@ -1374,11 +1374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Can be Deleted\\VS Code\\React JS - FrontEnd\\ReactJS-WinAuth\\WinAuthAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
       "projectName": "WinAuthAPI",
-      "projectPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Can be Deleted\\VS Code\\React JS - FrontEnd\\ReactJS-WinAuth\\WinAuthAPI.csproj",
+      "projectPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
       "packagesPath": "C:\\Users\\ESBingiS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Can be Deleted\\VS Code\\React JS - FrontEnd\\ReactJS-WinAuth\\obj\\",
+      "outputPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ESBingiS\\AppData\\Roaming\\NuGet\\NuGet.Config"

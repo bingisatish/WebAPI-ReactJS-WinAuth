@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DKBK58BLh8w=",
+  "dgSpecHash": "+3HRdp39zrc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Can be Deleted\\VS Code\\React JS - FrontEnd\\ReactJS-WinAuth\\WinAuthAPI.csproj",
+  "projectFilePath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ESBingiS\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\8.0.3\\microsoft.aspnetcore.authentication.negotiate.8.0.3.nupkg.sha512",
     "C:\\Users\\ESBingiS\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.3\\microsoft.aspnetcore.connections.abstractions.8.0.3.nupkg.sha512",
