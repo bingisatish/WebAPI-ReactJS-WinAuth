@@ -10,6 +10,8 @@
 /* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  min-height: 100vh;
   background-color: #f0f2f5;
   margin: 0;
   padding: 0;
@@ -46,27 +48,30 @@ body {
 }
 
 .profile-details {
-  display: none; /* or visibility: hidden; or opacity: 0; */
+  display: none;
 }
 
 .profile-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  color: #0078D4;
-  font-weight: bold;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: background-color 0.3s, transform 0.2s;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  margin-bottom: 10px;
+  line-height: 60px;
+  transition: background-color 0.2s, transform 0.3s;
 }
 
-.profile-circle:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.05);
+.profile-circle:hover,
+.profile-icon:hover {
+  background-color: #3b5998;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .dropdown-menu {
@@ -103,7 +108,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #c82333; /* Red color for logout */
+  background-color: #c82333;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -114,7 +119,6 @@ body {
   font-size: 0.9rem;
   transition: background-color 0.2s;
 }
-
 
 .logout-button .icon {
   margin-right: 0.5rem;
@@ -162,7 +166,7 @@ body {
 }
 
 .submenu {
-  display: none; /* or visibility: hidden; or opacity: 0; */
+  display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, opacity 0.4s ease;
@@ -175,7 +179,7 @@ body {
 
 .submenu.active {
   display: block;
-  max-height: 300px; /* or auto, but better for animation consistency */
+  max-height: 300px;
   opacity: 1;
 }
 
@@ -193,8 +197,8 @@ body {
 /* Main Content styles */
 .content {
   margin-left: 250px;
-  padding: 2rem;
-  margin-top: 70px;
+  padding: 20px;
+  flex: 1;
   transition: margin-left 0.3s ease;
 }
 
@@ -216,7 +220,8 @@ body {
 }
 
 .user-info {
-  background-color: #fff;
+  background-color: #34495e;
+  color: #ecf0f1;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -227,7 +232,7 @@ body {
 
 h2 {
   margin-bottom: 1rem;
-  color: #0078D4;
+  color: #fff;
 }
 
 /* Animations */
@@ -239,4 +244,178 @@ h2 {
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: #34495e;
+  color: #ecf0f1;
+  transition: width 0.3s;
+  overflow-x: hidden;
+  position: fixed;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Collapsed sidebar on small screens or toggle */
+@media(max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+}
+
+/* Toggle button styles */
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  background-color: #34495e;
+  color: #ecf0f1;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+  z-index: 1000;
+}
+
+.toggle-btn:hover {
+  background-color: #3b5998;
+}
+
+/* Profile section styles for sidebar */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #34495e;
+  padding: 24px 0 12px 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 100%;
+}
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-icon:hover {
+  background-color: #3b5998;
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-section::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #ecf0f1;
+  margin-top: 20px;
+  opacity: 0.15;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #bdc3c7;
+  margin-bottom: 8px;
+}
+
+/* Menu styles */
+.menu {
+  padding: 10px 0;
+}
+
+/* Menu item styles */
+.menu-item {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #3b5998;
+}
+
+.menu-item i {
+  margin-right: 15px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Submenu styles */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: #2c3e50;
+}
+
+/* When active, expand submenu */
+.submenu.show {
+  max-height: 500px;
+}
+
+.submenu a {
+  padding: 12px 40px;
+  display: block;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.submenu a:hover {
+  background-color: #3b5998;
+}
+
+/* Arrow icon rotation for open submenu */
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+/* Collapsed sidebar styles */
+body.collapsed .sidebar {
+  width: 60px;
+}
+
+body.collapsed .content {
+  margin-left: 60px;
+}
+
+/* Optional: hide text when collapsed */
+body.collapsed .menu-item span,
+body.collapsed .submenu a {
+  display: none;
 }

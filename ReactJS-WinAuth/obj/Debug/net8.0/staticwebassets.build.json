@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "HwIy0jusN0LGt/ch5OqzsgBVBswcB9E6xRMx3c23a34=",
-  "Source": "WinAuthAPI",
-  "BasePath": "_content/WinAuthAPI",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"cUoYxBKRjfi08wGpNom3g8ktUwj0BRuDc9iFmd7zLqo=","Source":"WinAuthAPI","BasePath":"_content/WinAuthAPI","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj": {}
+    "D:\\Projects\\VS Code\\ASP.Net Core + React\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj": {
+    "D:\\Projects\\VS Code\\ASP.Net Core + React\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
+        "projectUniqueName": "D:\\Projects\\VS Code\\ASP.Net Core + React\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
         "projectName": "WinAuthAPI",
-        "projectPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
-        "packagesPath": "C:\\Users\\ESBingiS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESBingiS\\OneDrive - Automatic Data Processing Inc\\Desktop\\Projects\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\obj\\",
+        "projectPath": "D:\\Projects\\VS Code\\ASP.Net Core + React\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\WinAuthAPI.csproj",
+        "packagesPath": "C:\\Users\\bingi\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\VS Code\\ASP.Net Core + React\\WebAPI-ReactJS-WinAuth\\ReactJS-WinAuth\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ESBingiS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\bingi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -75,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
