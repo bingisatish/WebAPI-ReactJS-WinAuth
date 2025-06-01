@@ -57,7 +57,7 @@ const UserProfile = () => {
     return null;
   }
 
- return (
+  return (
     <div
       className="user-info"
       style={{
@@ -69,13 +69,24 @@ const UserProfile = () => {
         margin: '0 auto',
       }}
     >
-      <div className="profile-container" style={{ position: 'relative', alignItems: 'center', justifyContent: 'center', display: 'flex', }}>
-        <div className="profile-circle" onClick={toggleProfileDropdown}>
+      <div
+        className="profile-container"
+        style={{
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          className="profile-circle"
+          onClick={toggleProfileDropdown}
+        >
           {getInitials(userData.fullName)}
-        </div>        
+        </div>
       </div>
-      <h2 style={{ color: '#fff' }}>Welcome, {userData.fullName}!</h2>
-      <p><strong>Email:</strong> {userData.email || 'Not Available'}</p>
+      <h3 style={{ color: '#fff' }}>Welcome, {userData.fullName}!</h3>
+      <p>{userData.email || 'Not Available'}</p>
     </div>
   );
 };
