@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+.layout {
+  display: flex;
+}
+
 /* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -31,7 +35,7 @@ body {
   min-height: 50px;
   background-color: #0d2c43;
   color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -43,8 +47,11 @@ body {
 }
 
 .profile-container {
-  position: relative;
-  cursor: pointer;
+  padding: 0 !important;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .profile-details {
@@ -55,7 +62,7 @@ body {
   width: 60px;
   height: 60px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
@@ -65,6 +72,9 @@ body {
   margin-bottom: 10px;
   line-height: 60px;
   transition: background-color 0.2s, transform 0.3s;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  padding: 0;
 }
 
 .profile-circle:hover,
@@ -137,7 +147,7 @@ body {
   background-color: #fff;
   padding: 1rem;
   height: calc(100vh - 50px);
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 50px;
   left: 0;
@@ -237,26 +247,57 @@ h2 {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Sidebar styles */
 .sidebar {
-  width: 250px;
+  width: flex;
   background-color: #34495e;
   color: #ecf0f1;
-  transition: width 0.3s;
+  transition: width 0.3s, min-width 0.3s;
   overflow-x: hidden;
   position: fixed;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  z-index: 100;
+  justify-content: flex-start;
+  /* No padding or margin here */
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  width: 100%;
+  padding: 0;
+  border-top: 1px solid #2c3e50;
+  background: rgba(44, 62, 80, 0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Collapsed styles */
+.layout.collapsed .sidebar {
+  width: 60px;
 }
 
 /* Collapsed sidebar on small screens or toggle */
@@ -272,13 +313,12 @@ h2 {
   top: 10px;
   right: -40px;
   background-color: #34495e;
-  color: #ecf0f1;
   border: none;
   padding: 8px;
-  cursor: pointer;
   border-radius: 4px;
-  transition: background 0.2s;
-  z-index: 1000;
+  cursor: pointer;
+  color: #ecf0f1;
+  z-index: 10;
 }
 
 .toggle-btn:hover {
@@ -290,9 +330,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #34495e;
-  padding: 24px 0 12px 0;
+  padding: 0;
   margin: 0;
   border-radius: 0;
   box-shadow: none;
@@ -324,13 +364,7 @@ h2 {
 }
 
 .profile-section::after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: 100%;
-  background-color: #ecf0f1;
-  margin-top: 20px;
-  opacity: 0.15;
+  display: none;
 }
 
 .user-name {
@@ -348,7 +382,11 @@ h2 {
 
 /* Menu styles */
 .menu {
+  flex: 1 1 auto;
+  /* This makes the menu take up all available space between profile and logout */
   padding: 10px 0;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 /* Menu item styles */
@@ -371,27 +409,28 @@ h2 {
 }
 
 /* Submenu styles */
-.submenu {
+/* Submenu styles (right aligned) */
+.sub-menu {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   background-color: #2c3e50;
 }
 
-/* When active, expand submenu */
-.submenu.show {
+.sub-menu.show {
   max-height: 500px;
 }
 
-.submenu a {
+/* Submenu items right aligned */
+.sub-menu a {
   padding: 12px 40px;
   display: block;
   color: #ecf0f1;
   text-decoration: none;
-  transition: background 0.2s;
+  text-align: right;
 }
 
-.submenu a:hover {
+.sub-menu a:hover {
   background-color: #3b5998;
 }
 
@@ -418,4 +457,92 @@ body.collapsed .content {
 body.collapsed .menu-item span,
 body.collapsed .submenu a {
   display: none;
+}
+
+.profile-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.2s;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.profile-circle:hover {
+  transform: scale(1.1);
+  background-color: #0056b3;
+}
+
+/* Centered and styled logout button */
+.logout-btn {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background: #e74c3c;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn i {
+  margin-right: 10px;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+/* Main content styling */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s, width 0.3s;
+  width: calc(100% - 250px);
+}
+
+.layout.collapsed .main-content {
+  margin-left: 60px;
+  width: calc(100% - 60px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+
+  .layout.collapsed .sidebar {
+    width: 60px;
+    min-width: 60px;
+  }
+
+  .layout.collapsed .main-content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
 }
