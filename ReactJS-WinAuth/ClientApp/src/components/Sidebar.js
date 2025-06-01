@@ -102,7 +102,7 @@ const Sidebar = ({ fullName, email }) => {
 
       {/* Main Content */}
       <div className="main-content">
-        <h1>Welcome to the React Sidebar</h1>
+        <h1>Welcome to the Web API, React JS with Windows Authentication</h1>
         <p>This is a clean, modular React implementation with exclusive submenus and right-aligned submenu items.</p>
       </div>
 
