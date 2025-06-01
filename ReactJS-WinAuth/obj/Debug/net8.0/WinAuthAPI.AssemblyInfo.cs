@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinAuthAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2f85435873f6042a9c30e7a88a7da48bb841cb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84cba99fbcf940b37e07b7971e4954c61b4e8b36")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinAuthAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinAuthAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
