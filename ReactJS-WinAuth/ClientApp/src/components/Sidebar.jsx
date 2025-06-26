@@ -9,13 +9,38 @@ const Sidebar = ({ isCollapsed }) => { // Accept isCollapsed prop from parent
     {
       key: 'home',
       iconClass: 'fas fa-home',
-      label: 'Home',
+      label: 'Home'      
+    },
+
+    // WORKFLOW
+    {
+      key: 'workflow',
+      iconClass: 'fas fa-tasks',
+      label: 'Workflow',
       hasSubmenu: true,
       submenu: [
-        { label: 'Dashboard', href: '#' },
-        { label: 'Activity', href: '#' },
+        { label: 'Outstanding', href: '#/workflow/outstanding' },
+        { label: 'Productivity', href: '#/workflow/productivity' },
+        { label: 'Capacity Utilisation', href: '#/workflow/capacity' },
+        { label: 'Extras', href: '#/workflow/extras' },
       ],
     },
+
+    // FITE
+    ,
+    {
+      key: 'fite',
+      iconClass: 'fas fa-tasks',
+      label: 'FITE',
+      hasSubmenu: true,
+      submenu: [
+        { label: 'Outstanding', href: '#/fite/outstanding' },
+        { label: 'Productivity', href: '#/fite/productivity' },
+        { label: 'Capacity Utilisation', href: '#/fite/capacity' },
+        { label: 'Extras', href: '#/fite/extras' },
+      ],
+    },
+    
     {
       key: 'settings',
       iconClass: 'fas fa-cog',
@@ -40,16 +65,11 @@ const Sidebar = ({ isCollapsed }) => { // Accept isCollapsed prop from parent
   };
 
   // Dynamic classes for sidebar. Added h-full and border-r.
-  const sidebarClasses = `bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out h-full border-r border-gray-700 ${isCollapsed ? 'w-20' : 'w-64'}`;
+  const sidebarClasses = `bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out h-full border-r border-gray-700 ${isCollapsed ? 'w-12' : 'w-48'}`;
 
   return (
     <aside className={sidebarClasses}>
       {/* Logo/App Title at the top of the sidebar */}
-      <div className={`p-4 border-b border-gray-700 flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'}`}>
-        <i className="fas fa-cube text-indigo-400 text-2xl"></i>
-        {!isCollapsed && <span className="ml-3 text-xl font-bold text-white whitespace-nowrap">App Name</span>}
-      </div>
-
         <div className="menu flex-1 overflow-y-auto"> {/* Added flex-1 and overflow-y-auto */}
           {menuItems.map((item) => (
             <React.Fragment key={item.key}>
