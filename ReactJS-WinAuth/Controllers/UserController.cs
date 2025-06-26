@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.DirectoryServices.AccountManagement;
 using System.Security.Claims;
+using WinAuthAPI.DTOs;
 
 namespace WinAuthAPI.Controllers
 {
@@ -10,52 +12,67 @@ namespace WinAuthAPI.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
+        private readonly IMemoryCache _memoryCache;
+
+        public UserController(IMemoryCache memoryCache)
+        {
+            _memoryCache = memoryCache;
+        }
+
         [HttpGet]
         public IActionResult GetCurrentUser()
         {
-            var userName = User.Identity?.Name;
-
-            // Get domain and username parts
-            string domain = string.Empty;
-            string user = userName ?? string.Empty;
-
-            if (!string.IsNullOrEmpty(userName) && userName.Contains('\\'))
+            // Using the SID claim is more reliable for AD lookups and as a unique key.
+            var sid = User.FindFirst(ClaimTypes.PrimarySid)?.Value;
+            if (string.IsNullOrEmpty(sid))
             {
-                var parts = userName.Split('\\');
-                domain = parts[0];
-                user = parts[1];
+                return BadRequest("Could not determine user identity from claims.");
             }
 
-            // Query Active Directory for additional user details
-            string fullName = user;
-            string email = null;
+            // Use the SID as the cache key for uniqueness.
+            if (_memoryCache.TryGetValue(sid, out UserDto? cachedUser))
+            {
+                return Ok(cachedUser);
+            }
 
             try
             {
                 using (var context = new PrincipalContext(ContextType.Domain))
                 {
-                    var principal = UserPrincipal.FindByIdentity(context, userName);
+                    var principal = UserPrincipal.FindByIdentity(context, IdentityType.Sid, sid);
                     if (principal != null)
                     {
-                        fullName = $"{principal.GivenName} {principal.Surname}".Trim();
-                        email = principal.EmailAddress;
+                        // Get domain from the user's Distinguished Name
+                        string domain = principal.DistinguishedName
+                            ?.Split(',')
+                            .FirstOrDefault(s => s.StartsWith("DC="))
+                            ?.Replace("DC=", "") ?? "Unknown";
+
+                        var userDto = new UserDto
+                        {
+                            UserName = principal.SamAccountName,
+                            FullName = $"{principal.GivenName} {principal.Surname}".Trim(),
+                            Domain = domain,
+                            Email = principal.EmailAddress,
+                            IsAuthenticated = User.Identity?.IsAuthenticated ?? false
+                        };
+
+                        var cacheEntryOptions = new MemoryCacheEntryOptions()
+                            .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                        _memoryCache.Set(sid, userDto, cacheEntryOptions);
+
+                        return Ok(userDto);
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // Log the exception (optional)
-                Console.WriteLine($"Error querying Active Directory: {ex.Message}");
+                // Avoid exposing internal details in production. Log the actual exception.
+                return StatusCode(500, "An error occurred while querying Active Directory.");
             }
 
-            return Ok(new
-            {
-                UserName = userName,
-                FullName = string.IsNullOrWhiteSpace(fullName) ? user : fullName, // Use AD full name or fallback to username
-                Domain = domain,
-                Email = email, // Email from AD or null if not available
-                IsAuthenticated = User.Identity?.IsAuthenticated ?? false
-            });
+            return NotFound("User not found in Active Directory.");
         }
     }
 }

@@ -11,11 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 
-builder.Services.AddAuthorization(options =>
-{
-    // Require authentication for all endpoints
-    options.FallbackPolicy = options.DefaultPolicy;
-});
+builder.Services.AddAuthorization();
 
 // Configure CORS to allow requests from the React app
 builder.Services.AddCors(options =>
@@ -32,11 +28,10 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
+
 
 // Enable CORS
 app.UseCors();
