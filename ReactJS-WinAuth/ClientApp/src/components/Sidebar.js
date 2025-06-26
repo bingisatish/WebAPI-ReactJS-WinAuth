@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import UserProfile from './UserProfile';
 import MenuItem from './MenuItem';
 
-const Sidebar = ({ fullName, email }) => {
+const Sidebar = () => { // Removed fullName, email props as UserProfile fetches its own
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
@@ -18,16 +18,16 @@ const Sidebar = ({ fullName, email }) => {
     alert('Logout functionality not implemented yet.');
   };
 
+  // Dynamic classes for sidebar and main content
+  const sidebarClasses = `bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`;
+  const mainContentClasses = `flex-1 p-8 transition-all duration-300 ease-in-out ${isCollapsed ? 'ml-20' : 'ml-64'}`;
+
   return (
-    <div className={`layout${isCollapsed ? ' collapsed' : ''}`}>
+    <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="profile-section" >
-          <UserProfile
-            fullName={fullName}
-            email={email}
-            logout={handleLogout}
-          />
+      <aside className={sidebarClasses}>
+        <div className="p-4 border-b border-gray-700">
+          <UserProfile /> {/* UserProfile now fetches its own data */}
         </div>
 
         <div className="menu">
@@ -39,9 +39,9 @@ const Sidebar = ({ fullName, email }) => {
             onClick={() => handleMenuClick('home')}
             hasSubmenu={true}
           />
-          <div className={`sub-menu${openSubmenu === 'home' ? ' show' : ''}`}>
-            <a href="#">Dashboard</a>
-            <a href="#">Activity</a>
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'home' ? 'max-h-screen' : 'max-h-0'}`}>
+            <a href="#" className="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
+            <a href="#" className="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Activity</a>
           </div>
 
           {/* Settings with submenu */}
@@ -52,9 +52,9 @@ const Sidebar = ({ fullName, email }) => {
             onClick={() => handleMenuClick('settings')}
             hasSubmenu={true}
           />
-          <div className={`sub-menu${openSubmenu === 'settings' ? ' show' : ''}`}>
-            <a href="#">Profile</a>
-            <a href="#">Security</a>
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'settings' ? 'max-h-screen' : 'max-h-0'}`}>
+            <a href="#" className="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
+            <a href="#" className="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Security</a>
           </div>
 
           {/* No submenu */}
@@ -68,19 +68,13 @@ const Sidebar = ({ fullName, email }) => {
         </div>
 
         {/* User info and logout at the bottom */}
-        <div
-          style={{
-            marginTop: 'auto',
-            padding: '1.5rem 0 0 0',
-            borderTop: '1px solid #2c3e50',
-            background: 'rgba(44,62,80,0.97)'
-          }}
-        >
-          <div className="sidebar-bottom">
-            <div className="sidebar-user-name">{fullName}</div>
-            <div className="sidebar-user-email">{email}</div>
-            <button className="logout-btn" onClick={handleLogout}>
-              <i className="fas fa-sign-out-alt" style={{ marginRight: 10 }}></i>
+        <div className="mt-auto p-4 border-t border-gray-700 bg-gray-800">
+          <div className="flex flex-col items-center">
+            {/* These might be redundant if UserProfile is already showing details */}
+            {/* <div className="text-sm text-gray-400">{fullName}</div>
+            <div className="text-sm text-gray-400">{email}</div> */}
+            <button className="w-full mt-2 py-2 px-4 bg-red-600 hover:bg-red-700 text-white rounded flex items-center justify-center transition-colors duration-200" onClick={handleLogout}>
+              <i className="fas fa-sign-out-alt mr-2"></i>
               Logout
             </button>
           </div>
@@ -88,7 +82,7 @@ const Sidebar = ({ fullName, email }) => {
       </aside>
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className={mainContentClasses}>
         <h1>Welcome to the React Web API Win Authention</h1>
         <p>This is a clean, modular React implementation with exclusive submenus and right-aligned submenu items.</p>
       </div>

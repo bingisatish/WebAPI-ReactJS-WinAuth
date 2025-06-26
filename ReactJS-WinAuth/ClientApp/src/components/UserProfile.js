@@ -46,11 +46,19 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <p className="loading">Loading user information...</p>;
+    return (
+      <div className="flex items-center justify-center p-4">
+        <p className="text-gray-400 animate-pulse text-sm">Loading...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return (
+      <div className="bg-red-900/50 border border-red-700 text-red-300 p-3 rounded-md text-xs" role="alert">
+        {error}
+      </div>
+    );
   }
 
   if (!userData) {
@@ -58,35 +66,17 @@ const UserProfile = () => {
   }
 
   return (
-    <div
-      className="user-info"
-      style={{
-        background: 'rgba(44,62,80,0.97)', // Same as side navigation
-        color: '#ecf0f1',
-        padding: '1.5rem',
-        boxShadow: '0 4px 24px 0 rgba(37, 73, 109, 0.13)',
-        maxWidth: 400,
-        margin: '0 auto',
-      }}
-    >
-      <div
-        className="profile-container"
-        style={{
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+    <div className="text-gray-100">
+      <div className="relative flex items-center justify-center">
         <div
-          className="profile-circle"
+          className="w-16 h-16 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center text-2xl cursor-pointer shadow-md transition-all duration-200 hover:bg-blue-700 hover:scale-105"
           onClick={toggleProfileDropdown}
         >
           {getInitials(userData.fullName)}
         </div>
       </div>
-      <h3 style={{ color: '#fff' }}>Welcome, {userData.fullName}!</h3>
-      <p>{userData.email || 'Not Available'}</p>
+      <h3 className="text-white text-base font-semibold mt-3 text-center truncate">{userData.fullName}</h3>
+      <p className="text-gray-400 text-xs text-center truncate">{userData.email || 'Not Available'}</p>
     </div>
   );
 };

@@ -1,13 +1,11 @@
 import React from 'react';
-import './App.css';
 import Sidebar from './components/Sidebar';
-import UserProfile from './components/UserProfile';
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
-      <div className="content">
+      <div className="flex-1 p-8">
         
       </div>
     </div>

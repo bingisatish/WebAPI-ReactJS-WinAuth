@@ -9,11 +9,11 @@ const MenuItem = ({
   rightAlign,
 }) => {
   return (
-    <div className="menu-item" onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
+    <div className="flex items-center justify-between p-3 rounded-md cursor-pointer hover:bg-gray-700 transition-colors duration-200 text-gray-200 hover:text-white" onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
       <i className={iconClass}></i>
-      <span>{label}</span>
+      <span className="ml-3 flex-grow">{label}</span>
       {hasSubmenu && (
-        <i className={`fas fa-chevron-right arrow ${isOpen ? 'rotate' : ''}`}></i>
+        <i className={`fas fa-chevron-right ml-auto transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}></i>
       )}
     </div>
   );
