@@ -3,10 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.DirectoryServices.AccountManagement;
 using System.Security.Claims;
-using WinAuthAPI.DTOs;
 
 namespace WinAuthAPI.Controllers
 {
+    public class UserDto
+    {
+        public string? UserName { get; set; }
+        public string? FullName { get; set; }
+        public string? Domain { get; set; }
+        public string? Email { get; set; }
+        public bool IsAuthenticated { get; set; }
+    }
+    
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
